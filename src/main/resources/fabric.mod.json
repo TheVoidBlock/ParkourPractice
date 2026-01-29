@@ -3,9 +3,13 @@
   "id": "parkourpractice",
   "version": "${version}",
   "name": "ParkourPractice",
-  "description": "TODO",
+  "description": "Client side parkour checkpoints. Control an undetectable ghost player to practice jumps.",
   "authors": [ "TheVoidBlock" ],
-  "contact": {},
+  "contact": {
+    "homepage": "https://modrinth.com/mod/HeadBrowser",
+    "sources": "https://github.com/thevoidblock/HeadBrowser",
+    "issues": "https://github.com/thevoidblock/HeadBrowser/issues"
+  },
   "license": "GPL-3.0",
   "icon": "assets/parkourpractice/icon.png",
   "environment": "client",

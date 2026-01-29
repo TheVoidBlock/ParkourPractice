@@ -4,6 +4,7 @@ import io.github.thevoidblock.parkourpractice.ParkourPractice;
 import net.minecraft.client.render.Camera;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,10 +19,11 @@ public abstract class CameraMixin {
     @Shadow
     private Entity focusedEntity;
 
-    @Shadow public abstract void update(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickProgress);
+    @Shadow
+    public void update(World area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickProgress) {}
 
     @Inject(method = "update", at = @At("HEAD"), cancellable = true)
-    public void update(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickProgress, CallbackInfo ci) {
+    public void update(World area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickProgress, CallbackInfo ci) {
         if(!ParkourPractice.ENABLED || focusedEntity == FAKE_PLAYER) return;
         update(area, FAKE_PLAYER, thirdPerson, inverseView, tickProgress);
         this.focusedEntity = focusedEntity;

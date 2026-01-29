@@ -19,7 +19,6 @@ public class FakePlayerEntity extends ClientPlayerEntity {
         );
 
         this.input = input;
-        this.remainingLoadTicks = 0;
     }
 
     @Override

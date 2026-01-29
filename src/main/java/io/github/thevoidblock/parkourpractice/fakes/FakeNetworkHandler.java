@@ -37,5 +37,10 @@ public class FakeNetworkHandler extends ClientPlayNetworkHandler {
     }
 
     @Override
+    public boolean isLoaded() {
+        return true;
+    }
+
+    @Override
     public void sendPacket(Packet<?> packet) {}
 }

@@ -8,11 +8,9 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -25,7 +23,7 @@ import java.util.Objects;
 public class ParkourPractice implements ClientModInitializer {
     public static final String MOD_ID = "parkourpractice";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    public static final KeyBinding activateBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.parkourpractice.activate", GLFW.GLFW_KEY_F4, new KeyBinding.Category(Identifier.of(MOD_ID, "main"))));
+    public static final KeyBinding ACTIVATE_BINDING = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.parkourpractice.activate", GLFW.GLFW_KEY_F4, new KeyBinding.Category(Identifier.of(MOD_ID, "main"))));
 
     public static FakePlayerEntity FAKE_PLAYER;
     public static boolean ENABLED = false;
@@ -33,7 +31,7 @@ public class ParkourPractice implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if(activateBinding.wasPressed()) {
+            if(ACTIVATE_BINDING.wasPressed()) {
                 if(ENABLED) disable(client);
                 else enable(client);
                 sendToggleNotification(client);

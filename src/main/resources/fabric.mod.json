@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "parkourpractice",
+  "version": "${version}",
+  "name": "ParkourPractice",
+  "description": "TODO",
+  "authors": [ "TheVoidBlock" ],
+  "contact": {},
+  "license": "GPL-3.0",
+  "icon": "assets/parkourpractice/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "io.github.thevoidblock.parkourpractice.ParkourPractice"
+    ]
+  },
+  "mixins": [
+    "parkourpractice.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

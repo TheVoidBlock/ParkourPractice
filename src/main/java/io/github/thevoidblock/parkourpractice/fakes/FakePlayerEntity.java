@@ -18,7 +18,10 @@ public class FakePlayerEntity extends ClientPlayerEntity {
                 false
         );
 
-        this.input = input;
+        ClientPlayerEntity player = client.player;
+        this.input = player.input;
+        this.refreshPositionAndAngles(player.getEntityPos(), player.getYaw(), player.getPitch());
+        this.setVelocity(player.getVelocity());
     }
 
     @Override
@@ -36,6 +39,9 @@ public class FakePlayerEntity extends ClientPlayerEntity {
 
         if(isGliding() && !canGlide())
             stopGliding();
+
+        this.getHungerManager().setSaturationLevel(player.getHungerManager().getSaturationLevel());
+        this.getHungerManager().setFoodLevel(player.getHungerManager().getFoodLevel());
     }
 
     @Override

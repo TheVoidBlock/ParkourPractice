@@ -21,7 +21,6 @@ public class ParkourPractice implements ClientModInitializer {
     public static final KeyBinding activateBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.parkourpractice.activate", GLFW.GLFW_KEY_F4, new KeyBinding.Category(Identifier.of(MOD_ID, "main"))));
 
     public static FakePlayerEntity FAKE_PLAYER;
-    public static Input INPUT;
     public static boolean ENABLED = false;
 
     @Override
@@ -45,12 +44,10 @@ public class ParkourPractice implements ClientModInitializer {
 
         ENABLED = true;
 
-        INPUT = client.player.input;
-        client.player.input = new Input();
-
-        FAKE_PLAYER = new FakePlayerEntity(client, INPUT);
+        FAKE_PLAYER = new FakePlayerEntity(client, client.player.input);
         client.world.addEntity(FAKE_PLAYER);
-        FAKE_PLAYER.refreshPositionAndAngles(client.player.getEntityPos(), client.player.getYaw(), client.player.getPitch());
+
+        client.player.input = new Input();
     }
 
     private void disable(MinecraftClient client) {
@@ -61,8 +58,8 @@ public class ParkourPractice implements ClientModInitializer {
         ENABLED = false;
 
         ((ClientWorld) FAKE_PLAYER.getEntityWorld()).removeEntity(FAKE_PLAYER.getId(), Entity.RemovalReason.DISCARDED);
-        FAKE_PLAYER = null;
 
-        client.player.input = INPUT;
+        client.player.input = FAKE_PLAYER.input;
+        FAKE_PLAYER = null;
     }
 }

@@ -8,9 +8,13 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
@@ -32,6 +36,7 @@ public class ParkourPractice implements ClientModInitializer {
             if(activateBinding.wasPressed()) {
                 if(ENABLED) disable(client);
                 else enable(client);
+                sendToggleNotification(client);
             }
         });
 
@@ -39,6 +44,18 @@ public class ParkourPractice implements ClientModInitializer {
         ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> disable(client));
 
         LOGGER.info("{} initialized", MOD_ID);
+    }
+
+    private void sendToggleNotification(MinecraftClient client) {
+        Objects.requireNonNull(client.player).sendMessage(
+                Text.translatable("chat.parkourpractice.ghost-player")
+                        .append(" ")
+                        .append((ENABLED ?
+                                Text.translatable("chat.parkourpractice.on") :
+                                Text.translatable("chat.parkourpractice.off"))
+                                .formatted(ENABLED ? Formatting.GREEN : Formatting.RED)),
+                true
+        );
     }
 
     private void enable(MinecraftClient client) {

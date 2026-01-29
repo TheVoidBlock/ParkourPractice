@@ -44,7 +44,7 @@ public class ParkourPractice implements ClientModInitializer {
 
         ENABLED = true;
 
-        FAKE_PLAYER = new FakePlayerEntity(client, client.player.input);
+        FAKE_PLAYER = new FakePlayerEntity(client);
         client.world.addEntity(FAKE_PLAYER);
 
         client.player.input = new Input();

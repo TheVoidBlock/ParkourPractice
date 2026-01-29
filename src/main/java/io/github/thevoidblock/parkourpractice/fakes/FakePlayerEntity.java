@@ -1,13 +1,12 @@
 package io.github.thevoidblock.parkourpractice.fakes;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.input.Input;
 import net.minecraft.client.network.ClientPlayerEntity;
 
 import java.util.Objects;
 
 public class FakePlayerEntity extends ClientPlayerEntity {
-    public FakePlayerEntity(MinecraftClient client, Input input) {
+    public FakePlayerEntity(MinecraftClient client) {
         super(
                 client,
                 Objects.requireNonNull(client.world),

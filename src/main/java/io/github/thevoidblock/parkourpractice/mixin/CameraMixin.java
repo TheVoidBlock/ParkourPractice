@@ -3,7 +3,6 @@ package io.github.thevoidblock.parkourpractice.mixin;
 import io.github.thevoidblock.parkourpractice.ParkourPractice;
 import net.minecraft.client.render.Camera;
 import net.minecraft.entity.Entity;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

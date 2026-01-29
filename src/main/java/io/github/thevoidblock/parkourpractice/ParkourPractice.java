@@ -13,11 +13,14 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class ParkourPractice implements ClientModInitializer {
     public static final String MOD_ID = "parkourpractice";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final KeyBinding activateBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.parkourpractice.activate", GLFW.GLFW_KEY_F4, new KeyBinding.Category(Identifier.of(MOD_ID, "main"))));
 
     public static FakePlayerEntity FAKE_PLAYER;
@@ -34,6 +37,8 @@ public class ParkourPractice implements ClientModInitializer {
 
         ClientPlayConnectionEvents.DISCONNECT.register((networkHandler, client) -> disable(client));
         ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> disable(client));
+
+        LOGGER.info("{} initialized", MOD_ID);
     }
 
     private void enable(MinecraftClient client) {

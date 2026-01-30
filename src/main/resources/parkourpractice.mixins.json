@@ -13,12 +13,13 @@
     "CameraMixin",
     "ClientCommonNetworkHandlerAccessor",
     "ClientPlayNetworkHandlerAccessor",
+    "LivingEntityRendererMixin",
     "MinecraftClientMixin",
     "MouseMixin",
-    "LivingEntityRendererMixin",
     "WorldRendererMixin"
   ],
   "mixins": [
-    "EntityPredicatesMixin"
+    "EntityPredicatesMixin",
+    "GeneralUtilMixin"
   ]
 }

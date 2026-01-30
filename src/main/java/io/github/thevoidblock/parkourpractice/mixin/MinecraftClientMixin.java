@@ -12,10 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MinecraftClientMixin {
     @Inject(method = "doAttack", at = @At("HEAD"), cancellable = true)
     public void doAttack(CallbackInfoReturnable<Boolean> cir) {
-        if(ParkourPractice.ENABLED) {
-            cir.setReturnValue(false);
-            cir.cancel();
-        }
+        if(ParkourPractice.ENABLED) cir.setReturnValue(false);
     }
 
     @Inject(method = "doItemUse", at = @At("HEAD"), cancellable = true)

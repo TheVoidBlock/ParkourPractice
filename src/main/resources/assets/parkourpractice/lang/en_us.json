@@ -1,5 +1,7 @@
 {
   "chat.parkourpractice.ghost-player": "Ghost Player",
   "chat.parkourpractice.on": "ON",
-  "chat.parkourpractice.off": "OFF"
+  "chat.parkourpractice.off": "OFF",
+  "key.category.parkourpractice.main": "Parkour Practice",
+  "key.parkourpractice.activate": "Toggle Ghost Player"
 }

@@ -13,20 +13,20 @@ import static io.github.thevoidblock.parkourpractice.ParkourPractice.MOD_ID;
 public class KeyBindings {
     private static final KeyBinding.Category CATEGORY = new KeyBinding.Category(Identifier.of(MOD_ID, "main"));
 
-    public static final KeyBinding ACTIVATE_BINDING = registerKeybind("activate", GLFW.GLFW_KEY_F4);
-    public static final KeyBinding RESET_BINDING = registerKeybind("reset", GLFW.GLFW_KEY_F6);
+    public static final KeyBinding ACTIVATE = registerKeybind("activate", GLFW.GLFW_KEY_F4);
+    public static final KeyBinding RESET = registerKeybind("reset", GLFW.GLFW_KEY_F6);
 
     public static void register() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if(client.player == null) return;
 
-            if(ACTIVATE_BINDING.wasPressed()) {
+            if(ACTIVATE.wasPressed()) {
                 if(ENABLED) ParkourPractice.disable(client);
                 else ParkourPractice.enable(client);
                 ParkourPractice.sendToggleNotification(client);
             }
 
-            if(RESET_BINDING.wasPressed() && ENABLED) {
+            if(RESET.wasPressed() && ENABLED) {
                 ParkourPractice.disable(client);
                 ParkourPractice.enable(client);
                 client.player.sendMessage(Text.translatable("text.parkourpractice.reset"), true);

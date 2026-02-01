@@ -32,14 +32,14 @@ public class ParkourPractice implements ClientModInitializer {
         LOGGER.info("{} initialized", MOD_ID);
     }
 
-    protected static void sendToggleNotification(MinecraftClient client) {
+    protected static void sendToggleNotification(MinecraftClient client, String module, boolean value) {
         Objects.requireNonNull(client.player).sendMessage(
-                Text.translatable("text.parkourpractice.ghost-player")
+                Text.translatable("text.parkourpractice." + module)
                         .append(" ")
-                        .append((ENABLED ?
+                        .append((value ?
                                 Text.translatable("text.parkourpractice.on") :
                                 Text.translatable("text.parkourpractice.off"))
-                                .formatted(ENABLED ? Formatting.GREEN : Formatting.RED)),
+                                .formatted(value ? Formatting.GREEN : Formatting.RED)),
                 true
         );
     }

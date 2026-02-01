@@ -33,7 +33,9 @@ public class KeyBindings {
             }
 
             if(FLIGHT.wasPressed() && ENABLED) {
-                ParkourPractice.sendToggleNotification(client, "flight", GHOST_PLAYER.getAbilities().allowFlying = !GHOST_PLAYER.getAbilities().allowFlying);
+                boolean flying = GHOST_PLAYER.getAbilities().allowFlying = !GHOST_PLAYER.getAbilities().allowFlying;
+                GHOST_PLAYER.getAbilities().flying &= flying;
+                ParkourPractice.sendToggleNotification(client, "flight", flying);
             }
         });
     }

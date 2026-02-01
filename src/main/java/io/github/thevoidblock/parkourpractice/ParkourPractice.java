@@ -2,19 +2,14 @@ package io.github.thevoidblock.parkourpractice;
 
 import io.github.thevoidblock.parkourpractice.fakes.FakePlayerEntity;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientWorldEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;
-import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,20 +18,13 @@ import java.util.Objects;
 public class ParkourPractice implements ClientModInitializer {
     public static final String MOD_ID = "parkourpractice";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    public static final KeyBinding ACTIVATE_BINDING = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.parkourpractice.activate", GLFW.GLFW_KEY_F4, new KeyBinding.Category(Identifier.of(MOD_ID, "main"))));
 
     public static FakePlayerEntity FAKE_PLAYER;
     public static boolean ENABLED = false;
 
     @Override
     public void onInitializeClient() {
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if(ACTIVATE_BINDING.wasPressed()) {
-                if(ENABLED) disable(client);
-                else enable(client);
-                sendToggleNotification(client);
-            }
-        });
+        KeyBindings.register();
 
         ClientPlayConnectionEvents.DISCONNECT.register((networkHandler, client) -> disable(client));
         ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> disable(client));
@@ -44,19 +32,19 @@ public class ParkourPractice implements ClientModInitializer {
         LOGGER.info("{} initialized", MOD_ID);
     }
 
-    private void sendToggleNotification(MinecraftClient client) {
+    protected static void sendToggleNotification(MinecraftClient client) {
         Objects.requireNonNull(client.player).sendMessage(
-                Text.translatable("chat.parkourpractice.ghost-player")
+                Text.translatable("text.parkourpractice.ghost-player")
                         .append(" ")
                         .append((ENABLED ?
-                                Text.translatable("chat.parkourpractice.on") :
-                                Text.translatable("chat.parkourpractice.off"))
+                                Text.translatable("text.parkourpractice.on") :
+                                Text.translatable("text.parkourpractice.off"))
                                 .formatted(ENABLED ? Formatting.GREEN : Formatting.RED)),
                 true
         );
     }
 
-    private void enable(MinecraftClient client) {
+    protected static void enable(MinecraftClient client) {
         if(ENABLED) return;
 
         Objects.requireNonNull(client.player);
@@ -70,7 +58,7 @@ public class ParkourPractice implements ClientModInitializer {
         client.player.input = new Input();
     }
 
-    private void disable(MinecraftClient client) {
+    protected static void disable(MinecraftClient client) {
         if(!ENABLED) return;
 
         Objects.requireNonNull(client.player);

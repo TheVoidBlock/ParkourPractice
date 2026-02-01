@@ -19,7 +19,7 @@ public class ParkourPractice implements ClientModInitializer {
     public static final String MOD_ID = "parkourpractice";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static FakePlayerEntity FAKE_PLAYER;
+    public static FakePlayerEntity GHOST_PLAYER;
     public static boolean ENABLED = false;
 
     @Override
@@ -52,8 +52,8 @@ public class ParkourPractice implements ClientModInitializer {
 
         ENABLED = true;
 
-        FAKE_PLAYER = new FakePlayerEntity(client);
-        client.world.addEntity(FAKE_PLAYER);
+        GHOST_PLAYER = new FakePlayerEntity(client);
+        client.world.addEntity(GHOST_PLAYER);
 
         client.player.input = new Input();
     }
@@ -65,9 +65,9 @@ public class ParkourPractice implements ClientModInitializer {
 
         ENABLED = false;
 
-        ((ClientWorld) FAKE_PLAYER.getEntityWorld()).removeEntity(FAKE_PLAYER.getId(), Entity.RemovalReason.DISCARDED);
+        ((ClientWorld) GHOST_PLAYER.getEntityWorld()).removeEntity(GHOST_PLAYER.getId(), Entity.RemovalReason.DISCARDED);
 
-        client.player.input = FAKE_PLAYER.input;
-        FAKE_PLAYER = null;
+        client.player.input = GHOST_PLAYER.input;
+        GHOST_PLAYER = null;
     }
 }

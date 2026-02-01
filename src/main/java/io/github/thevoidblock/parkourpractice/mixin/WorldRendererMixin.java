@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static io.github.thevoidblock.parkourpractice.ParkourPractice.FAKE_PLAYER;
+import static io.github.thevoidblock.parkourpractice.ParkourPractice.GHOST_PLAYER;
 
 @Mixin(WorldRenderer.class)
 public class WorldRendererMixin {
@@ -19,7 +19,7 @@ public class WorldRendererMixin {
 
     @ModifyExpressionValue(method = "fillEntityRenderStates", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/Camera;getFocusedEntity()Lnet/minecraft/entity/Entity;"))
     private Entity fakeFocusedEntity(Entity original, @Local Entity entity) {
-        return ParkourPractice.ENABLED && (entity == client.player || entity == FAKE_PLAYER) ? entity : original;
+        return ParkourPractice.ENABLED && (entity == client.player || entity == GHOST_PLAYER) ? entity : original;
     }
 
     @ModifyExpressionValue(method = "fillEntityRenderStates", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/Camera;isThirdPerson()Z"))

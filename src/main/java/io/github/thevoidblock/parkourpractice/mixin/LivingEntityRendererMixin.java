@@ -7,12 +7,12 @@ import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static io.github.thevoidblock.parkourpractice.ParkourPractice.FAKE_PLAYER;
+import static io.github.thevoidblock.parkourpractice.ParkourPractice.GHOST_PLAYER;
 
 @Mixin(LivingEntityRenderer.class)
 public class LivingEntityRendererMixin {
     @ModifyExpressionValue(method = "hasLabel(Lnet/minecraft/entity/LivingEntity;D)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;getCameraEntity()Lnet/minecraft/entity/Entity;"))
     protected Entity hasLabel(Entity original) {
-        return ParkourPractice.ENABLED ? FAKE_PLAYER : original;
+        return ParkourPractice.ENABLED ? GHOST_PLAYER : original;
     }
 }

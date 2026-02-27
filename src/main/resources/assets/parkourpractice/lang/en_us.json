@@ -2,6 +2,7 @@
   "text.parkourpractice.ghost-player": "Ghost Player",
   "text.parkourpractice.flight": "Ghost Player Flight",
   "text.parkourpractice.reset": "Reset Ghost Player",
+  "text.parkourpractice.no_clip": "Ghost Player No Clip",
 
   "text.parkourpractice.on": "ON",
   "text.parkourpractice.off": "OFF",
@@ -10,5 +11,6 @@
 
   "key.parkourpractice.activate": "Toggle Ghost Player",
   "key.parkourpractice.reset": "Reset Ghost Player",
-  "key.parkourpractice.flight": "Toggle Ghost Player Flight"
+  "key.parkourpractice.flight": "Toggle Ghost Player Flight",
+  "key.parkourpractice.no_clip": "Toggle Ghost Player No Clip"
 }

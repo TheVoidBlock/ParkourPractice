@@ -15,6 +15,7 @@ public class KeyBindings {
     public static final KeyBinding ACTIVATE = registerKeybind("activate", GLFW.GLFW_KEY_F4);
     public static final KeyBinding RESET = registerKeybind("reset", GLFW.GLFW_KEY_F6);
     public static final KeyBinding FLIGHT = registerKeybind("flight", GLFW.GLFW_KEY_UNKNOWN);
+    public static final KeyBinding NO_CLIP = registerKeybind("no_clip", GLFW.GLFW_KEY_UNKNOWN);
 
     public static void register() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
@@ -36,6 +37,11 @@ public class KeyBindings {
                 boolean flying = GHOST_PLAYER.getAbilities().allowFlying = !GHOST_PLAYER.getAbilities().allowFlying;
                 GHOST_PLAYER.getAbilities().flying &= flying;
                 ParkourPractice.sendToggleNotification(client, "flight", flying);
+            }
+
+            if(NO_CLIP.wasPressed() && ENABLED) {
+                GHOST_PLAYER.noClip = !GHOST_PLAYER.noClip;
+                ParkourPractice.sendToggleNotification(client, "no_clip", GHOST_PLAYER.noClip);
             }
         });
     }

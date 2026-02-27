@@ -47,4 +47,9 @@ public class FakePlayerEntity extends ClientPlayerEntity {
     public boolean isCamera() {
         return true;
     }
+
+    @Override
+    public boolean isSpectator() {
+        return this.noClip;
+    }
 }

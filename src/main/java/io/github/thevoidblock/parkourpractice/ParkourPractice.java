@@ -26,7 +26,8 @@ public class ParkourPractice implements ClientModInitializer {
     public void onInitializeClient() {
         KeyBindings.register();
 
-        ClientPlayConnectionEvents.DISCONNECT.register((networkHandler, client) -> disable(client));
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> disable(client));
+        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> disable(client));
         ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> disable(client));
 
         LOGGER.info("{} initialized", MOD_ID);

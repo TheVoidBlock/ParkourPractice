@@ -2,11 +2,12 @@
 Spawn a controllable ghost player with a keybind (default `F4`) to practice parkour jumps before commiting to them. While controlling the ghost player, your normal player looks afk. Normal physics and knockback apply to it. The server has no way of telling you have this mod installed without seeing your mod list.
 
 ## Key Bindings
-| Default         | Description                |
-|-----------------|----------------------------|
-| ```F4```        | Toggle Ghost Player        |
-| ```F6```        | Reset Ghost Player         |
-| ```Not Bound``` | Toggle Ghost Player Flight |
+| Default         | Description                 |
+|-----------------|-----------------------------|
+| ```F4```        | Toggle Ghost Player         |
+| ```F6```        | Reset Ghost Player          |
+| ```Not Bound``` | Toggle Ghost Player Flight  |
+| ```Not Bound``` | Toggle Ghost Player No Clip |
 
 ## Demo
 https://github.com/user-attachments/assets/7174ba47-cc0d-4eba-8cd0-2abcc60bbff1
